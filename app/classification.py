@@ -5,9 +5,20 @@
  # For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
 """
 
-import plotly.graph_objects as go
+try:
+    import plotly.graph_objects as go
+except ImportError:
+    import warnings
+    warnings.warn("plotly is not installed. The app will not work.")
+
 import requests
-import streamlit as st
+
+try:
+    import streamlit as st
+except ImportError:
+    import warnings
+    warnings.warn("streamlit is not installed. The app will not work.")
+
 import torch
 from lavis.models import load_model
 from lavis.processors import load_processor

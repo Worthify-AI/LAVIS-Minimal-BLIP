@@ -6,12 +6,23 @@
 """
 
 import torch
-import torchaudio
-import torchaudio.transforms as transforms
-from moviepy.editor import VideoFileClip
-from omegaconf import OmegaConf
-import torchaudio.compliance.kaldi as ta_kaldi
 
+try:
+    import torchaudio
+    import torchaudio.transforms as transforms
+    import torchaudio.compliance.kaldi as ta_kaldi
+except ImportError:
+    import warnings
+    warnings.warn("torchaudio is not installed. Audio processing will not work.")
+
+
+try:
+    from moviepy.editor import VideoFileClip
+except ImportError:
+    import warnings
+    warnings.warn("moviepy is not installed. MP4 audio processing will not work.")
+
+from omegaconf import OmegaConf
 from lavis.common.registry import registry
 from lavis.processors.base_processor import BaseProcessor
 from lavis.models.beats.Tokenizers import TokenizersConfig, Tokenizers

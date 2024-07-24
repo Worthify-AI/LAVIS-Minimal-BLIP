@@ -9,7 +9,11 @@ import glob
 from pathlib import Path
 import time
 from omegaconf import OmegaConf
-import pandas as pd
+try:
+    import pandas as pd
+except ImportError:
+    import warnings
+    warnings.warn("pandas is not installed. Some utils may not work.")
 import numpy as np
 import requests
 import zlib

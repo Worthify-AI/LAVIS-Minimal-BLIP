@@ -9,7 +9,11 @@ import torch
 from transformers import T5Tokenizer, T5ForConditionalGeneration
 from tqdm import tqdm 
 import argparse
-import pandas as pd
+try:
+    import pandas as pd
+except ImportError:
+    import warnings
+    warnings.warn("pandas is not installed. Some utils may not work.")
 import torch
 import os
 from transformers import T5Tokenizer, T5ForConditionalGeneration

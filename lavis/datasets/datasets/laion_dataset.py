@@ -5,7 +5,12 @@
  For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
 """
 
-import webdataset as wds
+try:
+    import webdataset as wds
+except ImportError:
+    import warnings
+    warnings.warn("WebDataset is not installed. WebDataset will not work.")
+
 from lavis.datasets.datasets.base_dataset import BaseDataset
 import random
 

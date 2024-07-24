@@ -20,7 +20,11 @@ from typing import Optional
 from urllib.parse import urlparse
 
 import numpy as np
-import pandas as pd
+try:
+    import pandas as pd
+except ImportError:
+    import warnings
+    warnings.warn("pandas is not installed. Some utils may not work.")
 import yaml
 from iopath.common.download import download
 from iopath.common.file_io import file_lock, g_pathmgr

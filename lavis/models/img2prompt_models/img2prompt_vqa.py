@@ -12,7 +12,12 @@
 
 import random
 
-import spacy
+try:
+    import spacy
+except ImportError:
+    import warnings
+    warnings.warn("Spacy is not installed. The answer extraction will not work.")
+
 import torch
 import torch.nn.functional as F
 from transformers import T5ForConditionalGeneration, T5Tokenizer

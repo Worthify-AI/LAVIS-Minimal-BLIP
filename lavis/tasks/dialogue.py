@@ -85,8 +85,18 @@ class DialogueTask(BaseTask):
 
 
 # TODO better structure for this.
-from pycocoevalcap.eval import COCOEvalCap
-from pycocotools.coco import COCO
+try:
+    from pycocoevalcap.eval import COCOEvalCap
+except ImportError:
+    import warnings
+    warnings.warn("pycocoevalcap is not installed. COCO evaluation will not work.")
+
+try:
+    from pycocotools.coco import COCO
+except ImportError:
+    import warnings
+    warnings.warn("pycocotools is not installed. COCO evaluation will not work.")
+
 from torchvision.datasets.utils import download_url
 
 

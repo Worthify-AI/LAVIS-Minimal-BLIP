@@ -19,7 +19,11 @@ import json
 import magic  # pip install python-magic
 import numpy as np
 import os
-import pandas as pd
+try:
+    import pandas as pd
+except ImportError:
+    import warnings
+    warnings.warn("pandas is not installed. Some utils may not work.")
 import requests
 import shelve
 import zlib

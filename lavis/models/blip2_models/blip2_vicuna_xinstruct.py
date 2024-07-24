@@ -19,11 +19,15 @@ from torch.cuda.amp import autocast as autocast
 import torch.nn as nn
 from torch.nn.modules.module import _IncompatibleKeys
 
-from peft import (
-    get_peft_model,
-    LoraConfig,
-    TaskType,
-)
+try:
+    from peft import (
+        get_peft_model,
+        LoraConfig,
+        TaskType,
+    )
+except ImportError:
+    import warnings
+    warnings.warn("PEFT is not installed. Lora model will not work.")
 
 import transformers
 import random

@@ -11,7 +11,11 @@
 import torch
 import torch.nn as nn
 from torch.nn import LayerNorm
-import torchaudio.compliance.kaldi as ta_kaldi
+try:
+    import torchaudio.compliance.kaldi as ta_kaldi
+except ImportError:
+    import warnings
+    warnings.warn("torchaudio is not installed. The beats model will not work.")
 
 from lavis.models.beats.backbone import (
     TransformerEncoder,

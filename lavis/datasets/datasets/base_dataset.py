@@ -7,7 +7,11 @@
 
 import json
 from typing import Iterable
-import pandas as pd
+try:
+    import pandas as pd
+except ImportError:
+    import warnings
+    warnings.warn("pandas is not installed. Some utils may not work.")
 import torch
 
 from torch.utils.data import Dataset, ConcatDataset

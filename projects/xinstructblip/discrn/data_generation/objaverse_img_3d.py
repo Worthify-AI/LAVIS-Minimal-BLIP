@@ -6,13 +6,34 @@
 
 
 import random
-from sentence_transformers import SentenceTransformer
-from sklearn.metrics.pairwise import cosine_similarity
+
+try:
+    from sentence_transformers import SentenceTransformer
+except ImportError:
+    import warnings
+    warnings.warn("sentence-transformers is not installed. Some utils may not work.")
+
+try:
+    from sklearn.metrics.pairwise import cosine_similarity
+except ImportError:
+    import warnings
+    warnings.warn("sklearn is not installed. Some utils may not work.")
+
 import numpy as np
 from tqdm import tqdm
-import pandas as pd
+try:
+    import pandas as pd
+except ImportError:
+    import warnings
+    warnings.warn("pandas is not installed. Some utils may not work.")
 import argparse
-from fuzzywuzzy import fuzz
+
+try:
+    from fuzzywuzzy import fuzz
+except ImportError:
+    import warnings
+    warnings.warn("fuzzywuzzy is not installed. Some utils may not work.")
+
 import pickle
 import torch
 from transformers import T5Tokenizer, T5ForConditionalGeneration

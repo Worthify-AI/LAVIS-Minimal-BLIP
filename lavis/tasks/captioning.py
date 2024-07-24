@@ -7,7 +7,11 @@
 
 import json
 import os
-import pandas as pd
+try:
+    import pandas as pd
+except ImportError:
+    import warnings
+    warnings.warn("pandas is not installed. Some utils may not work.")
 from tqdm import tqdm
 from lavis.common.dist_utils import main_process, get_rank
 from lavis.common.registry import registry
@@ -214,8 +218,18 @@ def convert_to_coco_gt(data, outpath, caption_key, sample_id_key, split, load_gt
     print(f"Saved annotations at {outpath}")
 
 # TODO better structure for this.
-from pycocoevalcap.eval import COCOEvalCap
-from pycocotools.coco import COCO
+try:
+    from pycocoevalcap.eval import COCOEvalCap
+except ImportError:
+    import warnings
+    warnings.warn("pycocoevalcap is not installed. COCO caption evaluation will not work.")
+
+try:
+    from pycocotools.coco import COCO
+except ImportError:
+    import warnings
+    warnings.warn("pycocotools is not installed. COCO caption evaluation will not work.")
+
 from torchvision.datasets.utils import download_url
 
 

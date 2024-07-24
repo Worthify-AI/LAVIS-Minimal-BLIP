@@ -19,7 +19,13 @@ import abc
 import cv2
 import numpy as np
 import torch
-from IPython.display import display
+
+try:
+    from IPython.display import display
+except ImportError:
+    import warnings
+    warnings.warn("IPython is not installed. You can't use display function.")
+
 from PIL import Image
 from diffusers.models.attention_processor import Attention as CrossAttention
 from typing import Union, Tuple, List, Dict, Optional

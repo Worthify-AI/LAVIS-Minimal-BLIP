@@ -14,7 +14,13 @@ from omegaconf import OmegaConf
 from torchvision import transforms
 from torchvision.transforms.functional import InterpolationMode
 import random
-import nltk
+
+try:
+    import nltk
+except ImportError:
+    import warnings
+    warnings.warn("nltk is not installed. The BlipInstructionProcessor will not work.")
+
 import pickle
 
 TEMPLATES = {"image":{}, "pc":{}, "audio":{}, "video":{}}

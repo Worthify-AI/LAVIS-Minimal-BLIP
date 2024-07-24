@@ -13,17 +13,27 @@ import tarfile
 import zipfile
 import cv2
 
-import decord
-import webdataset as wds
 import numpy as np
 import torch
 from torch.utils.data.dataset import IterableDataset, ChainDataset
-from decord import VideoReader
 from lavis.common.registry import registry
 from lavis.datasets.datasets.base_dataset import ConcatDataset
 from tqdm import tqdm
 
-decord.bridge.set_bridge("torch")
+try:
+    import webdataset as wds
+except ImportError:
+    import warnings
+    warnings.warn("WebDataset is not installed. WebDataset will not work.")
+
+try:
+    import decord
+    from decord import VideoReader
+    decord.bridge.set_bridge("torch")
+except ImportError:
+    import warnings
+    warnings.warn("Decord is not installed. Video loading will not work.")
+
 MAX_INT = registry.get("MAX_INT")
 
 

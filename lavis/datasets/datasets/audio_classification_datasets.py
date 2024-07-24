@@ -13,7 +13,13 @@ import pathlib
 import random
 import json
 import pandas as pd
-import torchaudio
+
+try:
+   import torchaudio
+except ImportError:
+    import warnings
+    warnings.warn("torchaudio is not installed. The ESC50 dataset will not work.")
+
 import torch
 from tqdm import tqdm
 

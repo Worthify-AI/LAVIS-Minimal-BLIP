@@ -12,7 +12,13 @@ import time
 
 import torch
 import torch.distributed as dist
-import webdataset as wds
+
+try:
+    import webdataset as wds
+except ImportError:
+    import warnings
+    warnings.warn("WebDataset is not installed. WebDataset will not work.")
+
 from lavis.common.dist_utils import download_cached_file, is_main_process, main_process
 from lavis.common.registry import registry
 from lavis.common.utils import is_url

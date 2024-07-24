@@ -1,6 +1,18 @@
-import h5py
+
+try:
+    import h5py
+except ImportError:
+    import warnings
+    warnings.warn("h5py is not installed. The IO model will not work.")
+
 import numpy as np
-import open3d
+
+try:
+    import open3d
+except ImportError:
+    import warnings
+    warnings.warn("open3d is not installed. The IO model will not work.")
+
 import os
 
 class IO:
